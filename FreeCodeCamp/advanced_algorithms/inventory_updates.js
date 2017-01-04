@@ -1,23 +1,36 @@
+// FreeCodeCamp
+// Advanced Algorithms
+// Inventory Update
+
+/*
+Compare and update the inventory stored in a 2D array against a second 2D array of a fresh delivery. Update the current existing inventory item quantities (in arr1). If an item cannot be found, add the new item and quantity into the inventory array. The returned inventory array should be in alphabetical order by item.
+*/
 
 function updateInventory(arr1, arr2) {
     // All inventory must be accounted for or you're fired!
 
-  // loop through each sub-array at index 1
-  var arr3 = arr1.map(function(curr, index) {
-      return curr[1];
-  });
+  var check = false;
 
-  var arr4 = arr2.map(function(curr, index) {
-    return curr[1];
-  });
-
-  arr4.forEach(function(item) {
-    if (arr3.includes(item)) {
-      console.log(item);
+  arr2.forEach(function(itemTwo) {
+    check = false;
+    arr1.forEach(function(itemOne) {
+      if (itemOne[1] === itemTwo[1]) {
+        itemOne[0] += itemTwo[0];
+        check = true;
+      }
+    });
+    if (check === false) {
+      arr1.push(itemTwo);
     }
   });
 
- // I am not particularly sure I am even on the right track here.
+  return arr1.sort(function(a, b) {
+    if (a[1] > b[1]) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
 }
 
 // Example inventory lists
