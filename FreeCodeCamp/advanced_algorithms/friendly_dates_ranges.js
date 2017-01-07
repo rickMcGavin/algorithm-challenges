@@ -14,27 +14,52 @@ Additionally, if the date range begins in the current year (i.e. it is currently
 If the range ends in the same month that it begins, do not display the ending year or month.
 */
 
-function makeFriendlyDates(arr) {
-  // declare array of all the months in words
-  var months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  ];
+// declare array of all the months in words
+var month = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
 
-  // splits the dates in the array
-  arr = arr.map(function(item) {
-    return item.split("-");
-  });
+function makeOrdinal(num) {
+  if (num === 1  || num === 21 || num === 31) {
+      return num.toString() + "st";
+    } else if (num === 2 || num === 22) {
+      return num.toString() + "nd";
+    } else if (num === 3 || num === 23) {
+      return num.toString() + "rd";
+    } else {
+      return num.toString() + "th";
+    }
+}
+
+
+function makeFriendlyDates(arr) {
+
+  var year = new Date().getFullYear();
+  var first = new Date(Date.parse((arr[0]).replace("-", "/")));
+  var second = new Date(Date.parse((arr[1]).replace("-", "/")));
+  var yearMilliseconds = 31536000000;
+
+  var firstMonth = first.getMonth();
+  var firstDay = first.getDay();
+  var firstYear = first.getFullYear();
+
+  // console.log(month[firstMonth] + " " + firstDay.toString() + " " + firstYear.toString());
+  //
+  // if (first.getMonth() === second.getMonth()) {
+  //
+  // }
+
 }
 
 console.log(makeFriendlyDates(["2016-07-01", "2016-07-04"]));
