@@ -29,7 +29,7 @@ function pairwise(arr, arg) {
   return arr.reduce(function(acc, item, i) {
     // loop through the array copy using standard for loop with j variable
     for (var j = i + 1; j < arr.length; j++) {
-      // check if sum of item and copyOfArr(j) is equal to arg
+      // check if sum of arr[i] and arr[j] is equal to arg
       if (arr[i] + arr[j] === arg) {
         // add the indexs to the acc
         acc += i + j;
